@@ -17,6 +17,15 @@ Template.AppointmentWizard.helpers({
     return Patient.findOne({"_id":Session.get("patient_id")});
 	}
 });
+Template.AppointmentWizard.onCreated(function () {
+  // Use this.subscribe inside onCreated callback
+  
+  this.subscribe('notifications', Session.get("docId"));
+  this.subscribe('loggeddoctor');
+  this.subscribe('appointments', Session.get("docId"));
+  this.subscribe('docworkplaces', Session.get("docId"));
+  this.subscribe('patients');
+});
 Template.AppointmentWizard.events({
 	'click .b1': function(e) {
     e.preventDefault();
